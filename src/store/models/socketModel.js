@@ -1,5 +1,4 @@
 import { action, thunk } from "easy-peasy";
-import { notification } from "antd";
 
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
