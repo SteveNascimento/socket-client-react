@@ -9,7 +9,7 @@ let stompClient = null;
 export const socketModel = {
   listMessages: [],
 
-  init: thunk(async (_actions, _payload) => {
+  init: thunk(async (actions, _payload) => {
     let sock = new SockJS("http://localhost:8080/ws-socket-register");
     stompClient = over(sock);
     stompClient.connect(
@@ -17,7 +17,8 @@ export const socketModel = {
       () => {
         console.log("Conected!");
         stompClient.subscribe("/topic/greetings", (msg) => {
-          console.log(msg);
+          const text = JSON.parse(msg.body).content;
+          actions.setListMessages([text]);
         });
       },
       (error) => {

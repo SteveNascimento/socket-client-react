@@ -50,6 +50,7 @@ function App() {
               style={{
                 marginBottom: "20px",
               }}
+              placeholder={"Digite seu nome! :)"}
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
@@ -61,7 +62,7 @@ function App() {
               }}
               onClick={sendMessage}
             >
-              Enviar Mensagem
+              Enviar
             </Button>
           </Card>
           <Card
