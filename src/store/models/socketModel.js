@@ -16,8 +16,9 @@ export const socketModel = {
       () => {
         console.log("Conected!");
         stompClient.subscribe("/topic/greetings", (msg) => {
-          const text = JSON.parse(msg.body).content;
-          actions.setListMessages([text]);
+          console.log(msg);
+          const greeting = JSON.parse(msg.body);
+          actions.addListMessages(greeting);
         });
       },
       (error) => {
@@ -30,7 +31,7 @@ export const socketModel = {
     stompClient.send("/app/hello", {}, JSON.stringify({ name: payload }));
   }),
 
-  setListMessages: action((state, payload) => {
-    state.listMessages = [...state.listMessages, ...payload];
+  addListMessages: action((state, payload) => {
+    state.listMessages = [...state.listMessages, payload];
   }),
 };

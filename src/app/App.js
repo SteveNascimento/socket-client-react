@@ -73,7 +73,9 @@ function App() {
           >
             <List
               dataSource={listMessages}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
+              renderItem={(item) => (
+                <List.Item key={item.id}>{item.content}</List.Item>
+              )}
             />
           </Card>
         </div>
